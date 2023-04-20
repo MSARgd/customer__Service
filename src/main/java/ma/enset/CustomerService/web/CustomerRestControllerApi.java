@@ -30,12 +30,11 @@ public class CustomerRestControllerApi {
     @PutMapping("/customers/{id}")
     private Customer updateCustomer(@RequestBody Customer customer,@PathVariable long id){
         return customerrepository.findById(id)
-                .map(c->{
+                .map(c ->{
                     c.setName(customer.getName());
                     c.setEmail(customer.getEmail());
                     return customerrepository.save(c);
-                })
-                .orElseThrow(()->new IllegalArgumentException("Invalid Id"+id));
+                } ).orElseThrow(()->new IllegalArgumentException("Invalide id"+id));
     }
     @DeleteMapping("/customers/{id}")
     private void deleteCustomer(@PathVariable long id){
