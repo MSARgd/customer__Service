@@ -19,9 +19,12 @@ public class CustomerServiceApplication  implements CommandLineRunner {
 		for(int i=0;i<10;i++){
 			customerrepository.save(Customer.builder()
 							.id((long) i)
-							.name(UUID.randomUUID().toString().substring(1,10))
-							.email(UUID.randomUUID().toString().substring(1,10))
+							.name(UUID.randomUUID().toString().substring(0,20)
+									.replaceAll("[^a-z]",""))
+						    .email(UUID.randomUUID().toString().substring(0,20)
+									.replaceAll("[^a-z]","")+"@gmail.com")
 							.build());
+
 		}
 		/**================Test methods=====================================**/
 	}
